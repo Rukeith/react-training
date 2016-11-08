@@ -7,6 +7,8 @@ import App from './containers/App'
 import Todomvc from './containers/Todomvc'
 import Lifecycle from './containers/Lifecycle'
 
+import './style/main.css'
+
 render(
     <Router history={browserHistory}>
         <Route path="/" component={App}>

@@ -7,7 +7,7 @@ export default class TodoItem extends Component {
             <li>
                 <input type="checkbox" onChange={item.toggleStatus.bind(null, item.id)} checked={item.completed} />
                 <span>{item.todo}</span>
-                <button style={{marginLeft: '20px'}} onClick={item.delTodo.bind(null, item.id)}>X</button>
+                <button className="del-todo-btn" onClick={item.delTodo.bind(null, item.id)}>X</button>
             </li>
         )
     }

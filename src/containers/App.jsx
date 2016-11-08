@@ -5,9 +5,9 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <Link to="/">home</Link>
-                <Link to="/todomvc">Todomvc</Link>
-                <Link to="/lifecycle">Lifecycle</Link>
+                <Link className="link" to="/">home</Link>
+                <Link className="link" to="/todomvc">Todomvc</Link>
+                <Link className="link" to="/lifecycle">Lifecycle</Link>
                 {this.props.children}
             </div>
         )
