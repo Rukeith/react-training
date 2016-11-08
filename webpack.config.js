@@ -5,7 +5,7 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var config = {
-    devtool: 'cheap-module-source-map',
+    devtool: 'eval',
     entry: [
         'webpack-hot-middleware/client',
         './src/index.js'
