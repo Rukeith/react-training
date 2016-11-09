@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 
+/*
+componentWillMount -> render -> componentDidMount
+shouldComponentUpdate -> componentWillUpdate -> render -> componentDidUpdate
+componentWillReceiveProps -> shouldComponentUpdate -> componentWillUpdate -> render -> componentDidUpdate
+*/
+
 export default class Child extends Component {
     constructor() {
         super()
