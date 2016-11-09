@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Child } from '../components/Lifecycle'
+import { Parent, Child } from '../components/Lifecycle'
 
 export default class Lifecycle extends Component {
     constructor() {
@@ -29,13 +29,9 @@ export default class Lifecycle extends Component {
 
     render() {
         return (
-            <div>
-                Parent
-                <button onClick={this.updateChild}>update child</button>
-                <button onClick={this.showChild}>show child</button>
-                <button onClick={this.hideChild}>hide child</button>
+            <Parent updateChild={this.updateChild} showChild={this.showChild} hideChild={this.hideChild}>
                 {this.state.childStatus === 'hide' ? null : <Child childStatus={this.state.childStatus} />}
-            </div>
+            </Parent>
         )
     }
 }
