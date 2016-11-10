@@ -13,8 +13,7 @@ export default class Lifecycle extends Component {
     }
 
     updateChild() {
-        const { childStatus } = this.state
-        const update = childStatus.split('-')
+        const update = this.state.childStatus.split('-')
         update[1] = parseInt(update[1]) + 1
         this.setState({ childStatus: update.join('-') })
     }

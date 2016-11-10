@@ -21,7 +21,7 @@ export default class Todomvc extends Component {
     }
 
     getTodo(todo) {
-        const todos = this.state.todos
+        const { todos } = this.state
         const id = uuid.v1()
         const item = {
             id,
@@ -35,7 +35,7 @@ export default class Todomvc extends Component {
     }
 
     delTodo(id) {
-        const todos = this.state.todos
+        const { todos } = this.state
         this.setState({ todos: todos.filter(item => item.id !== id) })
     }
 
@@ -44,7 +44,7 @@ export default class Todomvc extends Component {
     }
 
     toggleStatus(id) {
-        const todos = this.state.todos
+        const { todos } = this.state
         this.setState({ todos: todos.map(item => {
             if (item.id === id) {
                 item.completed = !item.completed
