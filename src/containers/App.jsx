@@ -8,6 +8,7 @@ export default class App extends Component {
                 <Link className="link" to="/">home</Link>
                 <Link className="link" to="/todomvc">Todomvc</Link>
                 <Link className="link" to="/lifecycle">Lifecycle</Link>
+                <Link className="link" to="/reduxtodomvc">ReduxTodomvc</Link>
                 {this.props.children}
             </div>
         )
