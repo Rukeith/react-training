@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 
 export default class TodoItem extends Component {
     render() {
-        const { item } = this.props
+        const { item, mainFuncs } = this.props
         return (
             <li>
-                <input type="checkbox" onChange={item.toggleStatus.bind(null, item.id)} checked={item.completed} />
-                <span>{item.todo}</span>
-                <button className="del-todo-btn" onClick={item.delTodo.bind(null, item.id)}>X</button>
+                <input type="checkbox" onChange={mainFuncs.toggleStatus.bind(null, item.id)} checked={item.completed} />
+                <span>{item.text}</span>
+                <button className="del-todo-btn" onClick={mainFuncs.delTodo.bind(null, item.id)}>X</button>
             </li>
         )
     }

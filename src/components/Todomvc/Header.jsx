@@ -10,7 +10,7 @@ export default class Header extends Component {
         const value = e.target.value.trim()
         if (e.keyCode === 13 && value !== '') {
             e.preventDefault()
-            this.props.getTodo(value)
+            this.props.addTodo(value)
             e.target.value = ''
         }
     }

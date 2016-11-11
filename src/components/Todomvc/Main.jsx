@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import TodoItem from './TodoItem'
-import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from '../../constants/ActionTypes.js'
+import { ACTIVE_TODOS, COMPLETED_TODOS } from '../../constants/ActionTypes'
 
 export default class Main extends Component {
     render() {
-        const { todos, show } = this.props
+        const { todos, mainFuncs } = this.props
 
-        const showTodos = todos.filter(item => {
-            switch (show) {
+        const showTodos = todos.list.filter(item => {
+            switch (todos.show) {
                 case ACTIVE_TODOS:
                     return !item.completed
                 case COMPLETED_TODOS:
@@ -18,11 +18,11 @@ export default class Main extends Component {
         })
 
         const todoItems = showTodos.map(item => {
-            return <TodoItem key={item.id} item={item} />
+            return <TodoItem key={item.id} item={item} mainFuncs={mainFuncs} />
         })
 
         let showStatus
-        switch (show) {
+        switch (todos.show) {
             case ACTIVE_TODOS:
                 showStatus = 'Active'
                 break

@@ -1,51 +1,40 @@
 import React, { Component } from 'react'
 import uuid from 'uuid'
-import { Header, Main, TodoItem, Footer } from '../components/Todomvc'
 
+import { Header, Main, TodoItem, Footer } from '../components/Todomvc'
 import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from '../constants/ActionTypes'
 
 export default class Todomvc extends Component {
     constructor() {
         super()
-        this.getTodo = this.getTodo.bind(this)
-        this.delTodo = this.delTodo.bind(this)
-        this.clearTodo = this.clearTodo.bind(this)
+        this.addTodo = this.addTodo.bind(this)
         this.toggleStatus = this.toggleStatus.bind(this)
-        this.all = this.all.bind(this)
-        this.active = this.active.bind(this)
-        this.complete = this.complete.bind(this)
+        this.delTodo = this.delTodo.bind(this)
+        this.allTodos = this.allTodos.bind(this)
+        this.activeTodos = this.activeTodos.bind(this)
+        this.completeTodos = this.completeTodos.bind(this)
+        this.clearTodos = this.clearTodos.bind(this)
         this.state = {
-            todos: [],
+            list: [],
             show: ALL_TODOS
         }
     }
 
-    getTodo(todo) {
-        const { todos } = this.state
+    addTodo(text) {
+        const { list } = this.state
         const id = uuid.v1()
         const item = {
             id,
-            todo,
-            completed: false,
-            delTodo: this.delTodo,
-            toggleStatus: this.toggleStatus
+            text,
+            completed: false
         }
-        todos.push(item)
-        this.setState({ todos })
-    }
-
-    delTodo(id) {
-        const { todos } = this.state
-        this.setState({ todos: todos.filter(item => item.id !== id) })
-    }
-
-    clearTodo() {
-        this.setState({ todos: [] })
+        list.push(item)
+        this.setState({ list })
     }
 
     toggleStatus(id) {
-        const { todos } = this.state
-        this.setState({ todos: todos.map(item => {
+        const { list } = this.state
+        this.setState({ list: list.map(item => {
             if (item.id === id) {
                 item.completed = !item.completed
             }
@@ -53,24 +42,49 @@ export default class Todomvc extends Component {
         }) })
     }
 
-    all() {
+    delTodo(id) {
+        const { list } = this.state
+        this.setState({ list: list.filter(item => item.id !== id) })
+    }
+
+    allTodos() {
         this.setState({ show: ALL_TODOS })
     }
 
-    active() {
+    activeTodos() {
         this.setState({ show: ACTIVE_TODOS })
     }
 
-    complete() {
+    completeTodos() {
         this.setState({ show: COMPLETED_TODOS })
     }
 
+    clearTodos() {
+        this.setState({ list: [] })
+    }
+
     render() {
+        const mainFuncs = {
+            delTodo: this.delTodo,
+            toggleStatus: this.toggleStatus
+        }
+        const footerFuncs = {
+            allTodos: this.allTodos,
+            activeTodos: this.activeTodos,
+            completeTodos: this.completeTodos,
+            clearTodos: this.clearTodos
+        }
+
+        const todos = {
+            show: this.state.show,
+            list: this.state.list
+        }
+
         return (
             <div>
-                <Header getTodo={this.getTodo} />
-                <Main todos={this.state.todos} show={this.state.show} />
-                <Footer clearTodo={this.clearTodo} all={this.all} active={this.active} complete={this.complete} />
+                <Header addTodo={this.addTodo} />
+                <Main todos={todos} mainFuncs={mainFuncs} />
+                <Footer footerFuncs={footerFuncs} />
             </div>
         )
     }
