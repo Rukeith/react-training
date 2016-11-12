@@ -3,3 +3,4 @@
 - Todomvc
 - React lifecycle
 - React router
+- Redux

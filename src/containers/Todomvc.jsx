@@ -22,9 +22,8 @@ export default class Todomvc extends Component {
 
     addTodo(text) {
         const { list } = this.state
-        const id = uuid.v1()
         const item = {
-            id,
+            id: uuid.v1(),
             text,
             completed: false
         }
@@ -43,8 +42,7 @@ export default class Todomvc extends Component {
     }
 
     delTodo(id) {
-        const { list } = this.state
-        this.setState({ list: list.filter(item => item.id !== id) })
+        this.setState({ list: this.state.list.filter(item => item.id !== id) })
     }
 
     allTodos() {
@@ -74,7 +72,6 @@ export default class Todomvc extends Component {
             completeTodos: this.completeTodos,
             clearTodos: this.clearTodos
         }
-
         const todos = {
             show: this.state.show,
             list: this.state.list

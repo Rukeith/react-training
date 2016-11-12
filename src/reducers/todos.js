@@ -1,7 +1,6 @@
 import uuid from 'uuid'
 import * as types from '../constants/ActionTypes'
 
-
 const initialState = {
     list: [],
     show: types.ALL_TODOS
