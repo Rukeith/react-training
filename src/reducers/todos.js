@@ -7,16 +7,13 @@ const initialState = {
 }
 
 export default function todos(state = initialState, action) {
-    let { list } = state
     switch (action.type) {
         case types.ADD_TODO:
-            const item = {
+            return Object.assign({}, state, { list: [...state.list, {
                 id: uuid.v1(),
                 text: action.text,
                 completed: false
-            }
-            list.push(item)
-            return Object.assign({}, state, { list })
+            }] })
 
         case types.TOGGLE_TODO:
             return Object.assign({}, state, { list: list.map(item => {
@@ -27,8 +24,7 @@ export default function todos(state = initialState, action) {
             }) })
 
         case types.DELETE_TODO:
-            list = state.list.filter(item => item.id !== action.id)
-            return Object.assign({}, state, { list })
+            return Object.assign({}, state, { list: state.list.filter(item => item.id !== action.id) })
 
         case types.ALL_TODOS:
             return Object.assign({}, state, { show: types.ALL_TODOS })
