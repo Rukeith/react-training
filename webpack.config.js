@@ -2,7 +2,6 @@
 
 var webpack = require('webpack');
 var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var config = {
     devtool: 'eval',
@@ -17,8 +16,7 @@ var config = {
     },
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin('src/style/main.scss')
+        new webpack.HotModuleReplacementPlugin()
     ],
     module: {
         loaders: [
@@ -27,7 +25,7 @@ var config = {
                 loaders: ['babel'], exclude: /node_modules/, include: __dirname
             },
             { 
-                test: /\.css|\.scss$/,
+                test: /\.css|\.sass$/,
                 loader: 'style!css!sass'
             }
         ]
